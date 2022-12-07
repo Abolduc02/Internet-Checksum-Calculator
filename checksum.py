@@ -26,5 +26,10 @@ while binaryNumber > 0:
     sum += (binaryNumber % (2 ** checksumLength))
     binaryNumber >>= checksumLength
 
+    ## If sum goes over checksum length, wrap bits
+    if sum >= (2 ** checksumLength):
+        sum += sum >> checksumLength
+        sum -= (2 ** checksumLength)
+
 ## Invert bitstring to get final checksum and print out
 print(bin(sum ^ ((2 ** checksumLength) - 1))[2:])
