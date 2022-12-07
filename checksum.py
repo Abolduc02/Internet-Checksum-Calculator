@@ -31,5 +31,11 @@ while binaryNumber > 0:
         sum += sum >> checksumLength
         sum -= (2 ** checksumLength)
 
-## Invert bitstring to get final checksum and print out
-print(bin(sum ^ ((2 ** checksumLength) - 1))[2:])
+## Invert bitstring to get final checksum
+checksumFinal = bin(sum ^ ((2 ** checksumLength) - 1))[2:]
+
+## Prints out checksum ensuring leading zeros are NOT omitted
+for i in range(checksumLength - len(checksumFinal)):
+    checksumFinal = '0' + checksumFinal
+
+print(checksumFinal)
